@@ -1,7 +1,9 @@
-# Tomcat installation on EC2 instance
+# Maven and Tomcat installation on EC2 instance
 
 ### Pre-requisites
-1. EC2 instance with Java v1.8.x 
+1. T2.Micro Amazon Linux 2023 EC2 instance with Java v1.8.x - yum install java-1.8* -y 
+2. Edit the ~/.bash_profile script and add the following ENV - JAVA_HOME=/path_to_jdk_installation
+3. Use find /usr/lib/jvm/java-1.8* | head -n 3 to find your jdk installation path
 
 ### Install Apache Tomcat
 1. Download tomcat packages from  https://tomcat.apache.org/download-80.cgi onto /opt on EC2 instance
