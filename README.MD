@@ -62,7 +62,7 @@ make sure to open port 8090 in your security group/firewall
    cd /
    find / -name context.xml
    ```
-5. The above command gives 4 webapp/..context.xml files. Comment out the valve section using [<!-- & -->] for the 4 files. Check class video for more info
+5. The above command gives 4 webapp/..context.xml files. Comment out the valve section using ```sh <!-- & --> ``` for the 4 files. Check class video for more info
    After that restart tomcat services to effect these changes
    ```sh 
    tomcatdown
