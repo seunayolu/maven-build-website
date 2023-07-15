@@ -1,10 +1,47 @@
-# Maven and Tomcat installation on EC2 instance
+# Maven, Tomcat & Nexus Repo installation on EC2 instance
 
 ### Pre-requisites for both Maven & Tomcat Setup
-1. T2.Micro Amazon Linux 2023 EC2 instance with Java v17 - yum install java-17 -y 
-2. Use find /usr/lib/jvm/java-17 | head -n 3 to find your jdk installation path
+1. T2.Micro Amazon Linux 2023 EC2 instance with Java v17
+   ```sh
+   yum install java-17 -y 
+   ``` 
+2. Use the command below to find your jdk installation path
+   ```sh 
+   find /usr/lib/jvm/java-17 | head -n 3
+   ```
 3. Edit the ~/.bash_profile script and add the following ENV - JAVA_HOME=/path_to_jdk_installation
 4. Check the class video for clarity
+
+### Pre-requisites for Nexus Repo
+
+1. T3.Medium Amazon Linux 2023 EC2 instance with Java v1.8* 
+   ```sh
+   yum install java-1.8* -y
+   ```
+2. Use the command below to find your jdk installation path
+   ```sh
+   find /usr/lib/jvm/java-1.8* | head -n 3 
+   ```
+3. Edit the ~/.bash_profile script and add the following ENV - JAVA_HOME=/path_to_jdk_installation
+4. Check the class video for clarity
+
+### Install Nexus Repo
+1. Download Nexus Repo Installation from https://help.sonatype.com/repomanager3/product-information/download
+   ```sh
+   # Change directory to /opt
+   cd /opt
+   wget https://download.sonatype.com/nexus/3/nexus-3.57.0-01-unix.tar.gz
+   tar -xvzf /opt/nexus-3.57.0-01-unix.tar.gz
+   ```
+2. Add the Java ENV path to ~/.bash_profile
+    ```sh
+    vi ~/.bash_profile
+    JAVA_HOME=/path_to_jdk_installation
+    # Add BJava to PATH in the ~/.bash_profile
+    PATH=$PATH:$HOME/bin:$JAVA_HOME
+    ```
+3. Nexus is accessible on Port 8081, So configure your Security Group to allow connection on port 8081 to your nexus repo
+4. Watch the Class Video for full configuration details.
 
 ### Install Apache Maven
 1. Download Maven packages from https://maven.apache.org/download.cgi
@@ -62,11 +99,8 @@ make sure to open port 8090 in your security group/firewall
    cd /
    find / -name context.xml
    ```
-5. The above command gives 4 webapp/..context.xml files. Comment out the valve section using 
-```sh 
-<!-- & --> 
-``` 
-for the 4 files. Check class video for more info After that restart tomcat services to effect these changes
+5. The above command gives 4 webapp/..context.xml files. Comment out the valve section using (<!-- & -->) for the 4 files. Check class video for more info
+   After that restart tomcat services to effect these changes
    ```sh 
    tomcatdown
    tomcatup
