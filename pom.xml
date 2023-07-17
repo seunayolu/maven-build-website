@@ -7,6 +7,7 @@
   <groupId>com.devops.maven</groupId>
   <artifactId>earth-app</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <name>earth-app</name>
   <!-- FIXME change it to the project's website -->
